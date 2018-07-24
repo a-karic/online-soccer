@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { build(:user) }
+  let(:user) { create(:user) }
 
   describe 'Factory' do
     it { expect(user).to be_valid }
@@ -22,5 +22,9 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Assocciations' do
+  end
+
+  describe 'Enum' do
+    it { should define_enum_for(:status).with %i[pending accepted banned] }
   end
 end
