@@ -9,21 +9,21 @@ RSpec.describe 'Admin - Users', type: :request do
   include_examples 'authenticated user get have http status ok', [
     {
       name: 'index',
-      path: 'admin_users_path',
+      path: 'admin_users_path'
     },
     {
       name: 'show',
       path: 'admin_user_path',
-      path_params: 'other_user',
+      path_params: 'other_user'
     },
     {
       name: 'edit',
       path: 'edit_admin_user_path',
-      path_params: 'other_user',
+      path_params: 'other_user'
     },
     {
       name: 'new',
-      path: 'new_admin_user_path',
+      path: 'new_admin_user_path'
     }
   ]
 end

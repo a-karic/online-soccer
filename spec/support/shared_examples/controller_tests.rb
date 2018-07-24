@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'get have http status ok' do |args|
   args.each do |arg|
     describe "GET #{arg[:name]}" do
@@ -16,4 +18,3 @@ shared_examples 'authenticated user get have http status ok' do |args|
   end
   include_examples 'get have http status ok', args
 end
-

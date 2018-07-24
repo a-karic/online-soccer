@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'default model tests' do |args|
   describe 'Factory' do
     it { expect(send(args[:instance])).to be_valid }
