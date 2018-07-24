@@ -2,15 +2,27 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Users', type: :request do
-  let(:user) { create(:user) }
-  let(:admin_user) { create(:admin_user) }
+RSpec.describe 'Admin - Users', type: :request do
+  let(:other_user) { create(:user) }
+  let(:user) { create(:admin_user) }
 
-  describe 'index' do
-    before do
-      sign_in admin_user
-      get admin_users_path
-    end
-    it { expect(response).to have_http_status :ok }
-  end
+  include_examples 'get have http status ok', [
+    {
+      name: 'index',
+      path: 'admin_users_path',
+      authenticate_user: true
+    },
+    {
+      name: 'show',
+      path: 'admin_user_path',
+      path_params: 'other_user',
+      authenticate_user: true
+    },
+    {
+      name: 'edit',
+      path: 'edit_admin_user_path',
+      path_params: 'other_user',
+      authenticate_user: true
+    }
+  ]
 end
