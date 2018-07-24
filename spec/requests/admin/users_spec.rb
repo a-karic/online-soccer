@@ -23,6 +23,11 @@ RSpec.describe 'Admin - Users', type: :request do
       path: 'edit_admin_user_path',
       path_params: 'other_user',
       authenticate_user: true
+    },
+    {
+      name: 'new',
+      path: 'new_admin_user_path',
+      authenticate_user: true
     }
   ]
 end
