@@ -9,3 +9,11 @@ shared_examples 'get have http status ok' do |args|
     end
   end
 end
+
+shared_examples 'authenticated user get have http status ok' do |args|
+  args.each do |arg|
+    arg[:authenticate_user] = true
+  end
+  include_examples 'get have http status ok', args
+end
+
