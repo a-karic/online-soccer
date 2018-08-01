@@ -4,26 +4,12 @@ require 'rails_helper'
 
 RSpec.describe 'Admin - Users', type: :request do
   let(:other_user) { create(:user) }
-  let(:user) { create(:admin_user) }
+  let(:admin_user) { create(:admin_user) }
+  let(:user) { create(:user) }
+  let!(:logged_user) { sign_in admin_user }
 
-  include_examples 'authenticated user get have http status ok', [
-    {
-      name: 'index',
-      path: 'admin_users_path'
-    },
-    {
-      name: 'show',
-      path: 'admin_user_path',
-      path_params: 'other_user'
-    },
-    {
-      name: 'edit',
-      path: 'edit_admin_user_path',
-      path_params: 'other_user'
-    },
-    {
-      name: 'new',
-      path: 'new_admin_user_path'
-    }
-  ]
+  describe 'GET index' do
+    before { get admin_users_path }
+    it_behaves_like 'loaded page'
+  end
 end

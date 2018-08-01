@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
                      ],
                      not_allow_values: [
                        { value: 'emailaddresse.foo', for: :email },
-                       { value: '123', for: :password }
+                       { value: '123', for: :password },
                      ]
                    },
                    enum: [
