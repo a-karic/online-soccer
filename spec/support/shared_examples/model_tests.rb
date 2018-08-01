@@ -36,3 +36,13 @@ def enum_tests(args)
     it { should define_enum_for(arg[:field]).with arg[:values] }
   end
 end
+
+shared_examples 'valid factory' do |args|
+  it { expect(build(args[:factory])).to be_valid }
+end
+
+shared_examples 'validated presences in model' do |args|
+  args.each do |arg|
+    it { should validate_presence_of arg }
+  end
+end
