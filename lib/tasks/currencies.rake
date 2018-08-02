@@ -3,22 +3,17 @@ namespace :currencies do
   task create: :environment do
     file = File.read('data/Common-Currency.json')
     currencies = JSON.parse file
+    file_rate = File.read('data/euro-rate.json')
+    rates = JSON.parse file_rate
+
     currencies.each do |element|
       currency_params = element.second
       curr = Currency.find_or_initialize_by(currency_params)
+      rate = rates.select { |r| r['code'] == curr.code }
+      curr.rate = rate.first['rate'] if rate.any?
       puts "Created currency #{curr.name}" if curr.save
     end
-  end
 
-  desc "Update rates"
-  task update_rate: :environment do
-    file = File.read('data/euro-rate.json')
-    objects = JSON.parse file
-    objects.each do |object|
-      currency = Currency.find_by(code: object['code'])
-      next unless currency
-      puts "Updated currency #{currency.name}" if currency.update(rate: object['rate'])
-    end
   end
 
   # later

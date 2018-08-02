@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_01_190956) do
+ActiveRecord::Schema.define(version: 2018_08_02_185402) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -43,15 +43,31 @@ ActiveRecord::Schema.define(version: 2018_08_01_190956) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "countries", force: :cascade do |t|
+    t.integer "currency_id"
+    t.string "alpha2", null: false
+    t.string "alpha3", null: false
+    t.string "name", null: false
+    t.integer "numeric"
+    t.string "capital"
+    t.string "phone"
+    t.string "native"
+    t.string "flag"
+    t.json "languages"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["currency_id"], name: "index_countries_on_currency_id"
+  end
+
   create_table "currencies", force: :cascade do |t|
-    t.string "symbol"
+    t.string "symbol", null: false
     t.string "symbol_native"
-    t.string "name"
+    t.string "name", null: false
     t.integer "decimal_digits"
-    t.string "code"
+    t.string "code", null: false
     t.integer "rounding"
     t.string "name_plural"
-    t.float "rate"
+    t.float "rate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
